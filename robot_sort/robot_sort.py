@@ -98,7 +98,6 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        [3, 7, 4, 2, 1, 9]
         # Fill this out
 
         # take first value, start loop to move robot to the right, comparing value, if value is lower, swap value, move left and place value, then continue moving right,
@@ -131,11 +130,18 @@ class SortingRobot:
         # compare items, if held is less than current, swap
                 if self.compare_item() == -1:
                     self.swap_item()
+        # last call should not call comparison, so can turn light on in comparison, when light on = false, end loop
+                    self.set_light_on()
         # move back right and place
                 self.move_right()
                 self.swap_item()
         # move left and repeat
                 self.move_left()
+
+        # light is set to off at beginning of loop, so need to turn on in a comparison? last call will not call the comparison, ie wont turn light on
+        # need to use light to break loop when list is sorted
+            if self.light_is_on() is False:
+                return
 
 
 if __name__ == "__main__":
@@ -147,5 +153,5 @@ if __name__ == "__main__":
 
     robot = SortingRobot(l)
 
-    robot.sort()
+    print(robot.sort())
     print(robot._list)
